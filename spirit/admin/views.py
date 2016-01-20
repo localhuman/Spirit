@@ -14,27 +14,8 @@ from ..comment.like.models import CommentLike
 from ..comment.models import Comment
 from ..topic.models import Topic
 from ..core.utils.decorators import administrator_required
-from .forms import BasicConfigForm
 
 User = get_user_model()
-
-
-@administrator_required
-def config_basic(request):
-
-    if request.method == 'POST':
-        form = BasicConfigForm(data=request.POST)
-
-        if form.is_valid():
-            form.save()
-            messages.info(request, _("Settings updated!"))
-            return redirect(request.GET.get("next", request.get_full_path()))
-    else:
-        form = BasicConfigForm()
-
-    context = {'form': form, }
-
-    return render(request, 'spirit/admin/config_basic.html', context)
 
 
 @administrator_required

@@ -14,7 +14,6 @@ import spirit.user.admin.urls
 urlpatterns = [
     url(r'^$', views.dashboard, name='index'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
-    url(r'^config/$', views.config_basic, name='config-basic'),
 
     url(r'^category/', include(spirit.category.admin.urls, namespace='category')),
     url(r'^comment/flag/', include(spirit.comment.flag.admin.urls, namespace='flag')),
