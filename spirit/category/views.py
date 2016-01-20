@@ -6,8 +6,6 @@ from django.views.generic import ListView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponsePermanentRedirect
 
-from djconfig import config
-
 from ..core.utils.paginator import yt_paginate
 from ..topic.models import Topic
 from .models import Category
