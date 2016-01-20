@@ -136,15 +136,15 @@ TEMPLATES = [
 # django-djconfig
 
 INSTALLED_APPS += [
-    'djconfig',
+
 ]
 
 MIDDLEWARE_CLASSES += [
-    'djconfig.middleware.DjConfigMiddleware',
+
 ]
 
 TEMPLATES[0]['OPTIONS']['context_processors'] += [
-    'djconfig.context_processors.config',
+
 ]
 
 # django-haystack

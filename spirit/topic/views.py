@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponsePermanentRedirect
 
-from djconfig import config
 
 from ..core.utils.paginator import paginate, yt_paginate
 from ..core.utils.ratelimit.decorators import ratelimit
@@ -89,7 +88,8 @@ def detail(request, pk, slug):
 
     comments = paginate(
         comments,
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 
@@ -115,7 +115,8 @@ def index_active(request):
 
     topics = yt_paginate(
         topics,
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 

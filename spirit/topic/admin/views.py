@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-from djconfig import config
 
 from ...core.utils.paginator import yt_paginate
 from ...core.utils.decorators import administrator_required
@@ -15,7 +14,8 @@ from ..models import Topic
 def _index(request, queryset, template):
     topics = yt_paginate(
         queryset,
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page= 10,
         page_number=request.GET.get('page', 1)
     )
     context = {'topics': topics, }

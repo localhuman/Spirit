@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 
-from djconfig import config
 
 from spirit.core.utils.paginator import yt_paginate
 from spirit.core.utils.decorators import administrator_required
@@ -31,7 +30,8 @@ def detail(request, pk):
 
     flags = yt_paginate(
         Flag.objects.filter(comment=flag.comment),
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 
@@ -48,7 +48,8 @@ def detail(request, pk):
 def _index(request, queryset, template):
     flags = yt_paginate(
         queryset,
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
     context = {'flags': flags, }

@@ -11,8 +11,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.html import escape
 
-from djconfig import config
-
 from ...core import utils
 from ...core.utils.paginator import yt_paginate
 from ...core.utils.paginator.infinite_paginator import paginate
@@ -106,7 +104,8 @@ def index_unread(request):
 def index(request):
     notifications = yt_paginate(
         TopicNotification.objects.for_access(request.user),
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 

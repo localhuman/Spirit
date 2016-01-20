@@ -8,7 +8,6 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.http import Http404
 
-from djconfig import config
 
 from ..core.utils.ratelimit.decorators import ratelimit
 from ..core.utils.decorators import moderator_required
@@ -111,7 +110,8 @@ def find(request, pk):
     comment_number = Comment.objects.filter(topic=comment.topic, date__lte=comment.date).count()
     url = paginator.get_url(comment.topic.get_absolute_url(),
                             comment_number,
-                            config.comments_per_page,
+                            ##@TODO create djconfig replacement
+                            10,
                             'page')
     return redirect(url)
 

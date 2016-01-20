@@ -7,8 +7,6 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 
-from djconfig import config
-
 from ...core.utils.paginator import yt_paginate
 from ...core.utils.decorators import administrator_required
 from .forms import UserForm, UserProfileForm
@@ -45,7 +43,8 @@ def edit(request, user_id):
 def _index(request, queryset, template):
     users = yt_paginate(
         queryset.order_by('-date_joined', '-pk'),
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
     context = {'users': users, }

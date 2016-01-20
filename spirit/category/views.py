@@ -33,7 +33,8 @@ def detail(request, pk, slug):
 
     topics = yt_paginate(
         topics,
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 

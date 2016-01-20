@@ -11,11 +11,4 @@ class SpiritAdminConfig(AppConfig):
     verbose_name = "Spirit Admin"
     label = 'spirit_admin'
 
-    def ready(self):
-        self.register_config()
 
-    def register_config(self):
-        import djconfig
-        from .forms import BasicConfigForm
-
-        djconfig.register(BasicConfigForm)

@@ -6,7 +6,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
-from djconfig import config
 
 from ...core.utils import paginator
 
@@ -28,7 +27,8 @@ class CommentBookmark(models.Model):
         return paginator.get_url(
             url=self.topic.get_absolute_url(),
             obj_number=comment_number,
-            per_page=config.comments_per_page,
+            ##@TODO create djconfig replacement
+            per_page=10,
             page_var='page'
         )
 
@@ -46,7 +46,9 @@ class CommentBookmark(models.Model):
         except ValueError:
             return
 
-        return config.comments_per_page * (page_number - 1) + 1
+        ##@TODO create djconfig replacement
+        return 10 * (page_number - 1) + 1
+#        return config.comments_per_page * (page_number - 1) + 1
 
     @classmethod
     def update_or_create(cls, user, topic, comment_number):

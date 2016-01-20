@@ -10,7 +10,6 @@ from django.contrib.auth.views import redirect_to_login
 from django.utils import timezone
 from django.core.exceptions import PermissionDenied
 
-from djconfig import config
 
 from ...core import utils
 from ...core.utils.paginator import yt_paginate
@@ -83,7 +82,8 @@ def voters(request, pk):
 
     choice_votes = yt_paginate(
         choice_votes,
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 

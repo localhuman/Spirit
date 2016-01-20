@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 
 from haystack.views import SearchView as BaseSearchView
-from djconfig import config
 
 from ..core.utils.paginator import yt_paginate
 
@@ -14,7 +13,9 @@ class SearchView(BaseSearchView):
         paginator = None
         page = yt_paginate(
             self.results,
-            per_page=config.topics_per_page,
+            ##@TODO create djconfig replacement
+
+            per_page='0',
             page_number=self.request.GET.get('page', 1)
         )
         return paginator, page

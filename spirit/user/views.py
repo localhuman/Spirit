@@ -11,7 +11,6 @@ from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.http import HttpResponsePermanentRedirect
 
-from djconfig import config
 
 from ..core.utils.paginator import yt_paginate
 from .utils.email import send_email_change_email
@@ -136,7 +135,8 @@ def topics(request, pk, slug):
         template='spirit/user/profile_topics.html',
         reverse_to='spirit:user:topics',
         context_name='topics',
-        per_page=config.topics_per_page
+        ##@TODO create djconfig replacement
+        per_page=10
     )
 
 
@@ -153,7 +153,8 @@ def comments(request, pk, slug):
         template='spirit/user/profile_comments.html',
         reverse_to='spirit:user:detail',
         context_name='comments',
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
     )
 
 
@@ -171,7 +172,8 @@ def likes(request, pk, slug):
         template='spirit/user/profile_likes.html',
         reverse_to='spirit:user:likes',
         context_name='comments',
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
     )
 
 

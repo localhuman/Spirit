@@ -11,8 +11,6 @@ from django.contrib import messages
 from django.http import HttpResponsePermanentRedirect
 from django.conf import settings
 
-from djconfig import config
-
 from ...core import utils
 from ...core.utils.paginator import paginate, yt_paginate
 from ...core.utils.ratelimit.decorators import ratelimit
@@ -88,7 +86,8 @@ def detail(request, topic_id, slug):
 
     comments = paginate(
         comments,
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 
@@ -170,7 +169,8 @@ def index(request):
 
     topics = yt_paginate(
         topics,
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 
@@ -190,7 +190,8 @@ def index_author(request):
 
     topics = yt_paginate(
         topics,
-        per_page=config.topics_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 

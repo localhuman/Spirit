@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 
-from djconfig import config
 
 from ...core.utils.paginator import yt_paginate
 from .models import CommentHistory
@@ -24,7 +23,8 @@ def detail(request, comment_id):
 
     comments = yt_paginate(
         comments,
-        per_page=config.comments_per_page,
+        ##@TODO create djconfig replacement
+        per_page=10,
         page_number=request.GET.get('page', 1)
     )
 
